@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+        var url = "http://sabioapi2.azurewebsites.net/api/authors"; //all the data
+
+        var authorsReceived = function (data, status, xhr) {
+            console.log(data);
+        };
+
+        var errorFunction = function (xhr, errorText, error) {
+            console.log(errorText);
+            console.log(error);
+            console.log(xhr); // in the console, this line points out why the "error" is an error
+        };
+
+        var settings = {
+            type: "GET",
+            headers: { "SABIO-AUTH": "U65VC2231" },
+            success: authorsReceived,
+            error: errorFunction
+        };
+        // create variable with all the data (in "normal" format)
+        var newAuthor = {
+            firstName: "Grant",
+            lastName: "Griffin",
+            age: 30,
+            salary: 50000
+        };
+
+        // create a variable that stringifies the data-object
+        var authorJSON = JSON.stringify(newAuthor);
+
+        // use the stringify varaible.
+        var settingPostStringified = {
+            type: "POST",
+            headers: { "SABIO-AUTH": "U65VC2231" },
+            success: authorsReceived,
+            error: errorFunction,
+            data: authorJSON,
+            contentType: "application/JSON"
+        };
+
+        // create ajax line of code in which the setting is the same as above...
+      //   $.ajax(url, settingPostStringified);
+
+        var updateAuthor = {
+            id: 1873938750,
+            firstName: "Conan",
+            lastName: "McGregor",
+            age: 26,
+            salary: 50000
+        };
+
+        // create a variable that stringifies the data-object
+        var authorUpdateJSON = JSON.stringify(updateAuthor);
+
+        // use the stringify varaible.
+        var settingPutStringified = {
+            type: "PUT",
+            headers: { "SABIO-AUTH": "U65VC2231" },
+            success: authorsReceived,
+            error: errorFunction,
+            data: authorUpdateJSON,
+            contentType: "application/JSON"
+        };
+
+        // create ajax line of code in which the setting is the same as above...
+       //  $.ajax(url + "/1873938750", settingPutStringified);
+
+        var deleteAuthor = {
+            id: 1873938750
+        };
+        var authorDeleteJSON = JSON.stringify(deleteAuthor);
+
+        // use the stringify varaible.
+        var settingDeleteStringified = {
+            type: "DELETE",
+            headers: { "SABIO-AUTH": "U65VC2231" },
+            success: authorsReceived,
+            error: errorFunction,
+            data: authorDeleteJSON,
+            contentType: "application/JSON"
+        };
+
+        // create ajax line of code in which the setting is the same as above...
+        $.ajax(url + "/1873938750", settingDeleteStringified);
+    </script>
+
+</body>
+</html>
