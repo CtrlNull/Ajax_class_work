@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+
+
+        var url = "http://sabioapi2.azurewebsites.net/api/authors";
+
+        var authorsReceived = function (data, status, xhr) {
+            console.log(data);
+        };
+
+        var errorFunction = function (xhr, errorText, error) {
+            console.log(errorText);
+        };
+
+        var settings = {
+            type: "GET",
+            headers: { "SABIO-AUTH": "U65VC2231" },
+            success: authorsReceived,
+            error: errorFunction
+        };
+
+        $.ajax(url, settings);
+
+
+
+        //var url = " whatever url";
+
+        //var NameOfsucessFunction = function (data /*JSON format*/, status, xhr/*hmlhttpRequest*/) {
+
+        //    code to be executed
+
+        //};
+
+        //var nameOfErrorFunction = function (xhr, error text, error) {
+
+        //    code to be executed
+
+        //};
+
+        //var settings = {
+
+        //    type: /*".get", ".put", ".post", ".delete*/,
+        //    headers: { sabio-auth: "blahblahblah"},
+        //    success: function_nameOfSuccessFunction,
+        //    error: function_nameOfErrorFunction,
+        //};
+
+
+        //$.ajax(URL_endpoint, object/settings);
+
+
+    </script>
+
+</body>
+</html>
